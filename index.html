@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wiktor Blicharski</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #F5F3EE;
+      --text: #1A1A18;
+      --muted: #7A7A72;
+      --accent: #2D5A3D;
+      --line: #D8D5CE;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      padding: clamp(2rem, 6vw, 5rem) clamp(1.5rem, 8vw, 8rem) clamp(4rem, 10vw, 8rem);
+    }
+
+    /* ── HEADER ── */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--line);
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    .logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .logo span {
+      display: block;
+      font-size: 0.38em;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-top: 0.4em;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.8rem;
+      align-items: center;
+      padding-top: 0.3rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--text); }
+
+    /* ── MAIN ── */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(3rem, 8vh, 7rem) 0;
+    }
+
+    .tagline {
+      font-size: clamp(0.75rem, 1.2vw, 0.85rem);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.15s forwards;
+    }
+
+    .headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.8rem, 7vw, 6rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      max-width: 14ch;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.25s forwards;
+    }
+
+    .headline em {
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    .description {
+      margin-top: 2rem;
+      max-width: 46ch;
+      font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+      line-height: 1.7;
+      color: var(--muted);
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.35s forwards;
+    }
+
+    /* ── TECH STACK ── */
+    .stack {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.4s forwards;
+    }
+
+    .stack-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .stack-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .stack-value {
+      font-size: 0.9rem;
+      color: var(--text);
+      font-weight: 400;
+      position: relative;
+    }
+
+    .stack-value::after {
+      content: '';
+      display: block;
+      width: 12px;
+      height: 1px;
+      background: var(--accent);
+      margin-top: 4px;
+    }
+
+    /* ── CTA ── */
+    .cta-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 3.5rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.5s forwards;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.6rem;
+      border-radius: 2px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border: 1px solid var(--accent);
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--accent);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--text);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--line);
+      padding-top: 1.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.6s forwards;
+    }
+
+    .contacts {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem; 
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .contact-item .label {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .contact-item a {
+      font-size: 0.88rem;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-item a:hover { color: var(--accent); }
+
+    .copyright {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 600px) {
+      nav { display: none; }
+      footer { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+      .contacts { margin-bottom: 0.5rem; }
+      .stack { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      WB
+      <span>Wiktor Blicharski</span>
+    </div>
+    <nav>
+      <a href="cv.pdf" target="_blank">CV</a>
+      <a href="https://linkedin.com/in/TWÓJ-PROFIL" target="_blank">LinkedIn</a>
+    </nav>
+  </header>
+
+  <main>
+    <p class="tagline">Energy Analyst · Renewable Energy Engineering</p>
+    <h1 class="headline">Data-driven<br /><em>energy</em><br />thinking.</h1>
+    <p class="description">
+      Inżynier OZE z doświadczeniem w zarządzaniu gospodarką energetyczną i dekarbonizacji. 
+      Specjalizuję się w optymalizacji systemów pod kątem efektywności kosztowej oraz redukcji emisji CO2. 
+      Dzięki biegłości w analizie danych technicznych i wykorzystaniu narzędzi Data Science, skutecznie przekładam złożone parametry na konkretne strategie oszczędnościowe. 
+      Doświadczenie w pracy z dużymi strukturami przemysłowymi pozwala mi na realizację zaawansowanych projektów w obszarze zielonej energii.
+    </p>
+
+    <div class="stack">
+      <div class="stack-item">
+        <span class="stack-label">Analysis</span>
+        <span class="stack-value">Python</span>
+      </div>
+      <div class="stack-item">
+        <span class="stack-label">Database</span>
+        <span class="stack-value">SQL</span>
+      </div>
+      <div class="stack-item">
+        <span class="stack-label">BI Tool</span>
+        <span class="stack-value">Power BI</span>
+      </div>
+      <div class="stack-item">
+        <span class="stack-label">Modeling</span>
+        <span class="stack-value">Excel</span>
+      </div>
+    </div>
+
+    <div class="cta-group">
+      <a class="btn btn-primary" href="cv.pdf" target="_blank">
+        ↓ Pobierz CV
+      </a>
+      <a class="btn btn-secondary" href="https://linkedin.com/in/TWÓJ-PROFIL" target="_blank">
+        LinkedIn →
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="contacts">
+      <div class="contact-item">
+        <span class="label">Email</span>
+        <a href="mailto:blichar10@gmail.com">blichar10@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <span class="label">Telefon</span>
+        <a href="tel:+48733153250">+48 733 153 250</a>
+      </div>
+    </div>
+    <span class="copyright">© 2026 Wiktor Blicharski</span>
+  </footer>
+
+</body>
+</html>
